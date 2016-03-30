@@ -61,7 +61,16 @@ public class Board {
 	}// is this board solvable?
 
 	public boolean equals(Object y) {
-		return false;
+		if(y == null) return false;
+		if(y == this) return true;
+		if(y.getClass()!= this.getClass()) return false;
+		Board board = (Board)y;
+		if(this.size() != board.size()) return false;
+		for(int i = 0; i < size; i++)
+			for(int j = 0; j < size; j++)
+				if(this.block[i][j] != board.block[i][j])
+					return false;
+		return true;
 	}// does this board equal y?
 
 	public Iterable<Board> neighbors() {
