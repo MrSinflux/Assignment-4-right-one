@@ -41,7 +41,9 @@ public class Board {
 			for (int j = 0; j < this.size; j++)
 				if (block[i][j] != 0 && block[i][j] != (i * size + j + 1))
 					ham++;
-		return ham;
+		if (ham == 0)
+			return ham;
+		return ham - 1;
 
 	}// number of blocks out of place
 
@@ -86,7 +88,12 @@ public class Board {
 	}
 
 	public boolean isSolvable() {
-		return false;
+		if (size % 2 != 0 && this.hamming() % 2 != 0)
+			return false;
+		if (size % 2 == 0 && (this.hamming() + x) % 2 != 0)
+			return false;
+
+		return true;
 	}// is this board solvable?
 
 	public boolean equals(Object y) {
@@ -151,9 +158,15 @@ public class Board {
 
 	public static void main(String[] args) {
 
-		Board test1 = new Board(new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 0 } });
-		System.out.print(test1.toString());
-		// System.out.print(test1.hamming());
-		// System.out.print(test1.isGoal());
+		Board test1 = new Board(new int[][] { { 1, 2, 3, }, { 4, 5, 6 }, { 8, 0, 7 } });
+		Board test4 = new Board(new int[][] { { 1, 2, 3, }, { 4, 5, 6 }, { 7, 8, 0 } });
+		Board test9 = new Board(new int[][] { { 1, 2, 3,4 }, {5, 0,6,8 }, { 9, 10, 7,11 },{ 13, 14, 15,12 } });
+		System.out.println(test9.toString());
+		System.out.println("hamming " + test9.hamming());
+		System.out.println("goal " + test9.isGoal());
+		System.out.println("size " + test9.size);
+		System.out.println("solvable " + test9.isSolvable());
+		System.out.println("block row " + test9.x);
+
 	}// unit tests (not graded)
 }
