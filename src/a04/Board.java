@@ -1,10 +1,14 @@
 package a04;
 
+import edu.princeton.cs.algs4.Stack;
+
 public class Board {
 
 	private int size;
 	private int N;
 	private int[][] block;
+	private int x;// x of initial 0
+	private int y;// y of initial 0
 
 	public Board(int[][] blocks) {
 		if (blocks == null)
@@ -13,10 +17,15 @@ public class Board {
 		N = size * size;
 
 		this.block = new int[size][size];
-		for (int i = 0; i < size; i++)
-			for (int j = 0; j < size; j++)
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (blocks[i][j] == 0) {
+					x = i;
+					y = j;
+				}
 				this.block[i][j] = blocks[i][j];
-
+			}
+		}
 	}// construct a board from an N-by-N array of blocks
 
 	// (where blocks[i][j] = block in row i, column j)
@@ -55,26 +64,75 @@ public class Board {
 			return true;
 		return false;
 	}// is this board the goal board?
+	/*
+	 * private swap method
+	 */
+
+	private void swap(int[][] array, int x1, int y1, int x2, int y2) {
+		int t = array[x1][y1];
+		array[x1][y1] = array[x2][y2];
+		array[x2][y2] = t;
+	}
+
+	/*
+	 * Private array coppy method
+	 */
+	private int[][] copy() {
+		int[][] copy = new int[size][size];
+		for (int i = 0; i < size; i++)
+			for (int j = 0; j < size; j++)
+				copy[i][j] = block[i][j];
+		return copy;
+	}
 
 	public boolean isSolvable() {
 		return false;
 	}// is this board solvable?
 
 	public boolean equals(Object y) {
-		if(y == null) return false;
-		if(y == this) return true;
-		if(y.getClass()!= this.getClass()) return false;
-		Board board = (Board)y;
-		if(this.size() != board.size()) return false;
-		for(int i = 0; i < size; i++)
-			for(int j = 0; j < size; j++)
-				if(this.block[i][j] != board.block[i][j])
+		if (y == null)
+			return false;
+		if (y == this)
+			return true;
+		if (y.getClass() != this.getClass())
+			return false;
+		Board board = (Board) y;
+		if (this.size() != board.size())
+			return false;
+		for (int i = 0; i < size; i++)
+			for (int j = 0; j < size; j++)
+				if (this.block[i][j] != board.block[i][j])
 					return false;
 		return true;
 	}// does this board equal y?
 
-	public Iterable<Board> neighbors() {
-		return null;
+	public Iterable<Board> neighbors() { // checks corner cases and takes the
+											// new neighbor board and pushes it
+											// to stack
+		Stack<Board> s = new Stack<Board>();
+		int[][] t = copy(); // copies new array for a temp
+		if (x < size - 1) {
+			swap(t, x, y, x + 1, y); // swaps right neighbor
+			s.push(new Board(t)); // pushes new board
+			swap(t, x + 1, y, x, y); // returns to original
+		}
+		if (x > 0) { // swaps left neighbor
+			swap(t, x - 1, y, x, y);
+			s.push(new Board(t)); // new board
+			swap(t, x, y, x - 1, y); // returns to original
+		}
+		if (y < size - 1) {
+			swap(t, x, y, x, y + 1);// swaps bottom neighbor
+			s.push(new Board(t)); // pushes new board
+			swap(t, x, y + 1, x, y);// returns to normal
+		}
+		if (y > 0) {
+			swap(t, x, y - 1, x, y); // swaps bottom neighbor
+			s.push(new Board(t)); // pushes new board
+			swap(t, x, y, x, y - 1);// returns to normal
+		}
+
+		return s;
 	}// all neighboring boards
 
 	public String toString() {
@@ -94,8 +152,8 @@ public class Board {
 	public static void main(String[] args) {
 
 		Board test1 = new Board(new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 0 } });
-		// System.out.print(test1.toString());
+		System.out.print(test1.toString());
 		// System.out.print(test1.hamming());
-		System.out.print(test1.isGoal());
+		// System.out.print(test1.isGoal());
 	}// unit tests (not graded)
 }
