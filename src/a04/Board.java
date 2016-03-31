@@ -160,13 +160,13 @@ public class Board {
 
 		Board test1 = new Board(new int[][] { { 1, 2, 3, }, { 4, 5, 6 }, { 8, 0, 7 } });
 		Board test4 = new Board(new int[][] { { 1, 2, 3, }, { 4, 5, 6 }, { 7, 8, 0 } });
-		Board test9 = new Board(new int[][] { { 1, 2, 3,4 }, {5, 0,6,8 }, { 9, 10, 7,11 },{ 13, 14, 15,12 } });
-		System.out.println(test9.toString());
-		System.out.println("hamming " + test9.hamming());
-		System.out.println("goal " + test9.isGoal());
-		System.out.println("size " + test9.size);
-		System.out.println("solvable " + test9.isSolvable());
-		System.out.println("block row " + test9.x);
+		Board test6 = new Board(new int[][] { { 1, 2, 3,4 }, {5, 0,6,8 }, { 9, 10, 7,11 },{ 13, 14, 15,12 } });
+		System.out.println(test6.toString());
+		System.out.println("hamming " + test6.hamming());
+		System.out.println("goal " + test6.isGoal());
+		System.out.println("size " + test6.size);
+		System.out.println("solvable " + test6.isSolvable());
+		System.out.println("block row " + test6.x);
 
 	}// unit tests (not graded)
 }
