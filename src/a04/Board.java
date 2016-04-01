@@ -41,9 +41,9 @@ public class Board {
 			for (int j = 0; j < this.size; j++)
 				if (block[i][j] != 0 && block[i][j] != (i * size + j + 1))
 					ham++;
-		if (ham == 0)
-			return ham;
-		return ham - 1;
+		//if (ham == 0)
+			//return ham;
+		return ham;
 
 	}// number of blocks out of place
 
@@ -52,7 +52,7 @@ public class Board {
 		for (int x = 0; x < size; x++)
 			for (int y = 0; y < size; y++) {
 				int value = block[x][y];
-				if (value != 0) {
+				if (value != 0 && this.hamming() != 0) {
 					distance += Math.abs(x - ((value - 1) / size)) + Math.abs(y - ((value - 1) % size));
 				}
 
@@ -161,12 +161,15 @@ public class Board {
 		Board test1 = new Board(new int[][] { { 1, 2, 3, }, { 4, 5, 6 }, { 8, 0, 7 } });
 		Board test4 = new Board(new int[][] { { 1, 2, 3, }, { 4, 5, 6 }, { 7, 8, 0 } });
 		Board test6 = new Board(new int[][] { { 1, 2, 3,4 }, {5, 0,6,8 }, { 9, 10, 7,11 },{ 13, 14, 15,12 } });
-		System.out.println(test6.toString());
+		Board test2 = new Board(new int[][] { { 1, 2, 3, }, { 0, 7, 6 }, { 4, 5, 8 } });
+		Board test13 = new Board(new int[][] { { 8, 1, 3, }, { 4, 0, 2 }, { 7, 6, 5 } });
+		System.out.println(test13.toString());
 		System.out.println("hamming " + test6.hamming());
-		System.out.println("goal " + test6.isGoal());
+		System.out.println("goal " + test6.isGoal());       
 		System.out.println("size " + test6.size);
 		System.out.println("solvable " + test6.isSolvable());
 		System.out.println("block row " + test6.x);
+		System.out.println("Manhattan " + test6.manhattan());
 
 	}// unit tests (not graded)
 }
