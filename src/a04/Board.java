@@ -1,7 +1,7 @@
 package a04;
 
 import edu.princeton.cs.algs4.Stack;
-
+//test
 public class Board {
 
 	private int size;
