@@ -88,11 +88,11 @@ public class Board {
 	}
 
 	public boolean isSolvable() {
-		if (size % 2 != 0 && this.hamming() % 2 != 0)
+		/**if (size % 2 != 0 && this.hamming() % 2 != 0)
 			return false;
 		if (size % 2 == 0 && (this.hamming() + x) % 2 != 0)
-			return false;
-
+			return false;**/
+		//need to rethink logic
 		return true;
 	}// is this board solvable?
 
@@ -163,13 +163,14 @@ public class Board {
 		Board test6 = new Board(new int[][] { { 1, 2, 3,4 }, {5, 0,6,8 }, { 9, 10, 7,11 },{ 13, 14, 15,12 } });
 		Board test2 = new Board(new int[][] { { 1, 2, 3, }, { 0, 7, 6 }, { 4, 5, 8 } });
 		Board test13 = new Board(new int[][] { { 8, 1, 3, }, { 4, 0, 2 }, { 7, 6, 5 } });
-		System.out.println(test13.toString());
-		System.out.println("hamming " + test6.hamming());
-		System.out.println("goal " + test6.isGoal());       
-		System.out.println("size " + test6.size);
-		System.out.println("solvable " + test6.isSolvable());
-		System.out.println("block row " + test6.x);
-		System.out.println("Manhattan " + test6.manhattan());
+		Board test67 = new Board(new int[][] { { 1, 2, 3,4 }, {5, 6,7,8 }, { 9, 10,11,12},{ 13, 14, 15,0} });
+		System.out.println(test1.toString());
+		System.out.println("hamming " + test13.hamming());
+		System.out.println("goal " + test13.isGoal());       
+		System.out.println("size " + test13.size);
+		System.out.println("solvable " + test13.isSolvable());
+		System.out.println("block row " + test13.x);
+		System.out.println("Manhattan " + test13.manhattan());
 
 	}// unit tests (not graded)
 }

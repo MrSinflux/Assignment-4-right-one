@@ -13,7 +13,7 @@ public class board {
 	Board test2 = new Board(new int[][] { { 1, 2, 3, }, { 0, 7, 6 }, { 4, 5, 8 } });
 	Board test3 = new Board(new int[][] { { 1, 2, 3, }, { 0, 7, 6 }, { 4, 5, 8 } });
 	Board test4 = new Board(new int[][] { { 1, 2, 3, }, { 4, 5, 6 }, { 7, 8, 0 } });
-	Board test5 = new Board(new int[][] { { 1, 2, 3, }, { 4, 5, 6 }, { 8, 7, 0 } });
+	Board test5 = new Board(new int[][] { { 1, 2, 3, }, { 4, 0, 6 }, { 7,8 , 5 } });
 	Board test6 = new Board(new int[][] { { 1, 2, 3,4 }, {5, 0,6,8 }, { 9, 10, 7,11 },{ 13, 14, 15,12 } });
 	Board test7 = new Board(new int[][] { { 1, 2, 3,4 }, {5, 0,6,8 }, { 9, 10, 7,11 },{ 13, 14, 15,12 } });
 	Board test8 = new Board(new int[][] { { 1, 2, 3,4 }, {5, 6,7,8 }, { 9, 10, 11,12 },{ 13, 14, 15,0 } });
@@ -40,7 +40,7 @@ public class board {
 	@Test
 	public void testHamming3() {
 
-		assertEquals(1, test1.hamming());
+		assertEquals(1, test5.hamming());
 	}
 	public void testHamming4() {
 
